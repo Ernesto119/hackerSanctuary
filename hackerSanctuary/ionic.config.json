@@ -1,0 +1,7 @@
+{
+  "name": "hackerSanctuary",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
