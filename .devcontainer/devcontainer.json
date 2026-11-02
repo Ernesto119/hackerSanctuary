@@ -1,21 +1,44 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 {
-    "name": "Node.js & TypeScript",
-    // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-    "image": "mcr.microsoft.com/devcontainers/typescript-node:5-24-bookworm",
+  "name": "Ionic Angular DevSecOps",
+  "build": {
+    "dockerfile": "Dockerfile",
+  },
 
-    // Features to add to the dev container. More info: https://containers.dev/features.
+  // 1. remoteUser: Mantiene el contenedor seguro sin privilegios de root
+  "remoteUser": "node",
 
-    // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    "forwardPorts": [8100, 8101],
+  // 2. containerEnv: Configuración del motor del contenedor y Node
+  "containerEnv": {
+    "DEBIAN_FRONTEND": "noninteractive",
+    "TZ": "UTC",
+    "NG_CLI_ANALYTICS": "false", // Desactiva la telemetría de Angular (privacidad)
+  },
 
-    // Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "sudo npm install -g @ionic/cli cordova-res native-run",
+  // 3. remoteEnv: Variables inyectadas en tu sesión remota
+  "remoteEnv": {
+    "SHELL": "/usr/bin/zsh",
+    "EDITOR": "zed",
+    "GOOGLE_AI_API_KEY": "${localEnv:GOOGLE_AI_API_KEY}",
+  },
 
-    // Configure tool-specific properties.
-    // "customizations": {},
+  // Puertos comunes para Ionic y Angular (Live Reload)
+  "forwardPorts": [8100, 4200],
+  "portsAttributes": {
+    "8100": {
+      "label": "Ionic Serve",
+      "onAutoForward": "notify",
+    },
+  },
 
-    // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-    "remoteUser": "node"
+  // Volúmenes y montajes para persistir historial y credenciales de IA
+  "mounts": [
+    "source=devcontainer-zshhistory,target=/home/devuser/.zshhistory,type=volume",
+    // Persiste caché de npm para acelerar instalaciones futuras
+    "source=devcontainer-npm-cache,target=/home/devuser/.npm,type=volume",
+    // Monta la configuración de AntiGravity CLI desde tu host
+    "source=${localEnv:HOME}/.gemini/,target=/home/devuser/.config/antigravity,type=bind,consistency=cached",
+  ],
+
+  // Comando post-creación opcional para verificar dependencias del proyecto si ya existen
+  "postCreateCommand": "node -v && npm -v && ionic -v",
 }

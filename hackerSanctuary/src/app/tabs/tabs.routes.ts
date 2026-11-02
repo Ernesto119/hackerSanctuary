@@ -9,11 +9,16 @@ export const routes: Routes = [
     children: [
       {
         path: 'tab1',
-        loadComponent: () => import('../tab1/tab1.page').then((m) => m.Tab1Page),
+        loadComponent: () => import('../home/home.page').then((m) => m.HomePage),
+      },
+      {
+        path: 'news',
+        loadComponent: () => import('../news/news.page').then((m) => m.NewsPage),
       },
       {
         path: 'tab2',
-        loadComponent: () => import('../tab2/tab2.page').then((m) => m.Tab2Page),
+        redirectTo: 'news',
+        pathMatch: 'full',
       },
       {
         path: 'tab3',

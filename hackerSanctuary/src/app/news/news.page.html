@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Hacker News</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">News</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-refresher slot="fixed" (ionRefresh)="getRss($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  @if (isLoading) {
+  <div
+    style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 50vh; gap: 12px"
+  >
+    <ion-spinner name="crescent"></ion-spinner>
+    <p style="color: var(--ion-color-medium)">Loading news...</p>
+  </div>
+  } @else if (errorMessage) {
+  <div style="padding: 16px">
+    <ion-card color="danger">
+      <ion-card-content>
+        <p>{{ errorMessage }}</p>
+        <ion-button fill="outline" color="light" (click)="getRss()">Retry</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  } @else {
+  <ion-grid>
+    <ion-row>
+      @for (news of newsList; track news.link || $index) {
+      <ion-col size="12" size-md="6">
+        <ion-card>
+          <ion-card-header>
+            @if (news.pubDate) {
+            <ion-card-subtitle>{{ news.pubDate }}</ion-card-subtitle>
+            }
+            <ion-card-title>{{ news.title }}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p>{{ news.contentSnippet }}</p>
+            @if (news.link) {
+            <ion-button [href]="news.link" target="_blank" rel="noopener noreferrer" fill="clear" size="small">
+              Read Article
+            </ion-button>
+            }
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      } @empty {
+      <ion-col size="12">
+        <div style="text-align: center; padding: 2rem">
+          <p>No news articles found.</p>
+          <ion-button fill="outline" (click)="getRss()">Refresh</ion-button>
+        </div>
+      </ion-col>
+      }
+    </ion-row>
+  </ion-grid>
+  }
+</ion-content>

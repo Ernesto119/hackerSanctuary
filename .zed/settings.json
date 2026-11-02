@@ -1,5 +1,10 @@
 {
-  "terminal": {
-    "shell": "system"
-  }
+    "terminal": {
+        "shell": {
+            "with_arguments": {
+                "program": "bash",
+                "args": []
+            }
+        }
+    }
 }
