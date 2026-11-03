@@ -22,6 +22,12 @@
           <ion-item button href="https://tryhackme.com/" target="_blank">
             <ion-label>TryHackMe</ion-label>
           </ion-item>
+          <ion-item button href="https://www.hackthebox.com/" target="_blank">
+            <ion-label>HscktheBox</ion-label>
+          </ion-item>
+          <ion-item button href="https://www.vulnhub.com/" target="_blank">
+            <ion-label>Vulnhub</ion-label>
+          </ion-item>
         </ion-list>
       </div>
     </ion-accordion>
@@ -58,6 +64,15 @@
           <ion-item button href="https://github.com/Pnwcomputers/ULTIMATE-CYBERSECURITY-MASTER-GUIDE" target="_blank">
             <ion-label>Ultimate Cybersecurity Master Guide</ion-label>
           </ion-item>
+          <ion-item button href="https://github.com/SagarBiswas-MultiHAT/penetration-testing-roadmap" target="_blank">
+            <ion-label>Pentesting Roadmap</ion-label>
+          </ion-item>
+          <ion-item button href="https://github.com/Pnwcomputers/ULTIMATE-CYBERSECURITY-MASTER-GUIDE" target="_blank">
+            <ion-label>Ultimate Cybersecurity Master Guide</ion-label>
+          </ion-item>
+          <ion-item button href="https://sagarbiswas-multihat.github.io/notebooks/" target="_blank">
+            <ion-label>Research Notebooks</ion-label>
+          </ion-item>
         </ion-list>
       </div>
     </ion-accordion>
@@ -65,10 +80,100 @@
     <!-- Temas -->
     <ion-accordion value="topics">
       <ion-item slot="header" color="light">
-        <ion-label><h2>Temas (Forense, Pentesting)</h2></ion-label>
+        <ion-label><h2>Temas Principales</h2></ion-label>
       </ion-item>
       <div slot="content" class="ion-padding">
-        <p>Próximamente: Contenido detallado sobre Forense y Red Team.</p>
+        <ion-accordion-group>
+          <!-- Informática Forense -->
+          <ion-accordion value="forensics">
+            <ion-item slot="header" color="secondary">
+              <ion-label><h3>Informática Forense (DFIR)</h3></ion-label>
+            </ion-item>
+            <div slot="content" class="ion-padding">
+              <p>Análisis de evidencias digitales, recuperación de datos e investigación de incidentes.</p>
+              <ion-list>
+                <ion-item button href="https://www.volatilityfoundation.org/" target="_blank">
+                  <ion-label>
+                    <h3>Volatility Framework</h3>
+                    <p>Análisis forense de memoria RAM</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item button href="https://www.autopsy.com/" target="_blank">
+                  <ion-label>
+                    <h3>Autopsy / Sleuth Kit</h3>
+                    <p>Análisis de discos duros y sistemas de archivos</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item button href="https://www.wireshark.org/" target="_blank">
+                  <ion-label>
+                    <h3>Wireshark</h3>
+                    <p>Análisis forense de tráfico de red y capturas PCAP</p>
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+            </div>
+          </ion-accordion>
+
+          <!-- Pentesting / Red Team -->
+          <ion-accordion value="pentesting">
+            <ion-item slot="header" color="secondary">
+              <ion-label><h3>Pentesting & Red Team</h3></ion-label>
+            </ion-item>
+            <div slot="content" class="ion-padding">
+              <p>Simulación de ataques, auditorías de seguridad y búsqueda de vulnerabilidades.</p>
+              <ion-list>
+                <ion-item button href="https://owasp.org/www-project-top-ten/" target="_blank">
+                  <ion-label>
+                    <h3>OWASP Top 10</h3>
+                    <p>Las vulnerabilidades web más críticas</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item button href="https://nmap.org/" target="_blank">
+                  <ion-label>
+                    <h3>Nmap</h3>
+                    <p>Escaneo de redes y detección de servicios</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item button href="https://www.metasploit.com/" target="_blank">
+                  <ion-label>
+                    <h3>Metasploit Framework</h3>
+                    <p>Desarrollo y ejecución de exploits</p>
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+            </div>
+          </ion-accordion>
+
+          <!-- Blue Team -->
+          <ion-accordion value="blueteam">
+            <ion-item slot="header" color="secondary">
+              <ion-label><h3>Blue Team & Defensa</h3></ion-label>
+            </ion-item>
+            <div slot="content" class="ion-padding">
+              <p>Protección, detección de amenazas, monitoreo de redes y endurecimiento de sistemas.</p>
+              <ion-list>
+                <ion-item button href="https://attack.mitre.org/" target="_blank">
+                  <ion-label>
+                    <h3>MITRE ATT&CK</h3>
+                    <p>Matriz de tácticas y técnicas de adversarios</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item button href="https://wazuh.com/" target="_blank">
+                  <ion-label>
+                    <h3>Wazuh SIEM</h3>
+                    <p>Monitoreo de seguridad y detección de amenazas</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item button href="https://snort.org/" target="_blank">
+                  <ion-label>
+                    <h3>Snort / Suricata</h3>
+                    <p>Sistemas de detección/prevención de intrusos (IDS/IPS)</p>
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
       </div>
     </ion-accordion>
   </ion-accordion-group>

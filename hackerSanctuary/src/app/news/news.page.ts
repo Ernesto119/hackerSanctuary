@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../environments/environment';
 
 import {
   IonContent,
@@ -61,7 +62,7 @@ export class NewsPage implements OnInit {
   isLoading = false;
   errorMessage = '';
 
-  private readonly targetUrl = 'https://feeds.feedburner.com/TheHackersNews';
+  private readonly targetUrl = environment.rssFeedUrl;
 
   constructor() {}
 
@@ -99,31 +100,52 @@ export class NewsPage implements OnInit {
     }
     this.errorMessage = '';
 
-    // Fast proxies first (corsproxy.io is typically 3x-5x faster than allorigins)
-    const proxies = [
-      `https://corsproxy.io/?url=${encodeURIComponent(this.targetUrl)}`,
-      `https://api.allorigins.win/raw?url=${encodeURIComponent(this.targetUrl)}`,
-    ];
-
     let xmlText = '';
 
-    for (const proxyUrl of proxies) {
-      try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 6000);
+    // 1. Primary request: directly uses local dev server proxy (/api/rss) or native Capacitor URL
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 4000);
 
-        const response = await fetch(proxyUrl, { signal: controller.signal });
-        clearTimeout(timeoutId);
+      const response = await fetch(this.targetUrl, { signal: controller.signal });
+      clearTimeout(timeoutId);
 
-        if (response.ok) {
-          const text = await response.text();
-          if (text && text.trim().length > 0) {
-            xmlText = text;
-            break;
-          }
+      if (response.ok) {
+        const text = await response.text();
+        if (text && text.trim().length > 0) {
+          xmlText = text;
         }
-      } catch (err) {
-        console.warn(`Proxy ${proxyUrl} failed or timed out:`, err);
+      }
+    } catch (err) {
+      console.warn('Primary fetch via dev proxy failed, trying public proxy fallback:', err);
+    }
+
+    // 2. Fallback: only if the primary request failed (e.g. if served without dev proxy)
+    if (!xmlText) {
+      const fallbackUrl = 'https://feeds.feedburner.com/TheHackersNews';
+      const fallbackProxies = [
+        `https://corsproxy.io/?url=${encodeURIComponent(fallbackUrl)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(fallbackUrl)}`,
+      ];
+
+      for (const proxyUrl of fallbackProxies) {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 6000);
+
+          const response = await fetch(proxyUrl, { signal: controller.signal });
+          clearTimeout(timeoutId);
+
+          if (response.ok) {
+            const text = await response.text();
+            if (text && text.trim().length > 0) {
+              xmlText = text;
+              break;
+            }
+          }
+        } catch (err) {
+          console.warn(`Fallback proxy ${proxyUrl} failed:`, err);
+        }
       }
     }
 

@@ -1,0 +1,11 @@
+{
+  "/api/rss": {
+    "target": "https://feeds.feedburner.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api/rss": ""
+    },
+    "logLevel": "debug"
+  }
+}
