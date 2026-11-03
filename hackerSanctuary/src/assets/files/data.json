@@ -1,0 +1,40 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "nombre": "Adaptador wifi",
+      "image": "assets/img/adapter-wifi.webp",
+      "url": "https://www.amazon.com/-/es/TP-Link-Adaptador-AC600-Archer-T2U/dp/B07P5PRK7J?channelId=500&clpRedir=Y&plpRedirect=mhFallback"
+    },
+    {
+      "id": 2,
+      "nombre": "Flipper Zero",
+      "image": "assets/img/flipper.jpg",
+      "url": "https://www.amazon.com/-/es/Multitool-Flipper-Starter-tarjeta-dispositivo/dp/B0H1DT1G11?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91"
+    },
+    {
+      "id": 3,
+      "nombre": "Usb Key",
+      "image": "assets/img/usbkey.jpg",
+      "url": "https://www.amazon.com/-/es/Yubico-Autenticaci%C3%B3n-multifactor-seguridad-certificado/dp/B08DHL1YDL?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91"
+    },
+    {
+      "id": 4,
+      "nombre": "Wifi pineaple",
+      "image": "assets/img/wifi-pineaple.jpg",
+      "url": "https://www.amazon.com/-/es/Hak5-WiFi-Pi%C3%B1a-Mark-VII/dp/B0DKL6ZH6Y"
+    },
+    {
+      "id": 5,
+      "nombre": "Rassperry Pi",
+      "image": "assets/img/rasperry-pi.jpg",
+      "url": "https://www.amazon.com/-/es/Element14-Raspberry-Pi-Placa-base/dp/B07BDR5PDW"
+    },
+    {
+      "id": 6,
+      "nombre": "Lenovo thinkpad",
+      "image": "assets/img/thinkpak.jpg",
+      "url": "https://www.amazon.com/-/es/Lenovo-ThinkPad-E16-procesador-negocios/dp/B0HFX6Q4GC"
+    }
+  ]
+}

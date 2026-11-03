@@ -74,3 +74,13 @@ Thumbs.db
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+.zed/
+
+*.env
+*.env.local
+
+hackerSanctuary/.angular/
+hackerSanctuary/dist/
+hackerSanctuary/tmp/
+hackerSanctuary/.sass-cache/

@@ -8,7 +8,7 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'home',
         loadComponent: () => import('../home/home.page').then((m) => m.HomePage),
       },
       {
@@ -21,19 +21,19 @@ export const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'tab3',
-        loadComponent: () => import('../tab3/tab3.page').then((m) => m.Tab3Page),
+        path: 'market',
+        loadComponent: () => import('../market/market.page').then((m) => m.MarketPage),
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/home',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/home',
     pathMatch: 'full',
   },
 ];
